@@ -1,0 +1,25 @@
+# Just test prototypes
+
+- type: entity
+  id: LPPClothingBeltUtilityFilled
+  parent: ClothingBeltUtility
+  suffix: Test
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Crowbar
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: NetworkConfigurator
+
+- type: entity
+  id: LPPClothingBeltUtilityFilledRestock
+  parent: LPPClothingBeltUtilityFilled
+  suffix: Test, Restock
+  components:
+  - type: EntityTableRestock
+    restockDelay: 15
