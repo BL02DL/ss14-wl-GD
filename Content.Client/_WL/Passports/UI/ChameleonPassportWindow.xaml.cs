@@ -10,8 +10,7 @@ namespace Content.Client._WL.Passports.UI
         public event Action<string>? OnNameChanged;
         public event Action<string>? OnSpeciesChanged;
         public event Action<string>? OnGenderChanged;
-        public event Action<string>? OnYOBChanged;
-        public event Action<string>? OnHeightChanged;
+        public event Action<string>? OnDateOfBirthChanged;
         public event Action<string>? OnPIDChanged;
 
         public ChameleonPassportWindow()
@@ -28,11 +27,8 @@ namespace Content.Client._WL.Passports.UI
             GenderLineEdit.OnTextEntered += e => OnGenderChanged?.Invoke(e.Text);
             GenderLineEdit.OnFocusExit += e => OnGenderChanged?.Invoke(e.Text);
 
-            YOBLineEdit.OnTextEntered += e => OnYOBChanged?.Invoke(e.Text);
-            YOBLineEdit.OnFocusExit += e => OnYOBChanged?.Invoke(e.Text);
-
-            HeightLineEdit.OnTextEntered += e => OnHeightChanged?.Invoke(e.Text);
-            HeightLineEdit.OnFocusExit += e => OnHeightChanged?.Invoke(e.Text);
+            DateOfBirthLineEdit.OnTextEntered += e => OnDateOfBirthChanged?.Invoke(e.Text);
+            DateOfBirthLineEdit.OnFocusExit += e => OnDateOfBirthChanged?.Invoke(e.Text);
 
             PIDLineEdit.OnTextEntered += e => OnPIDChanged?.Invoke(e.Text);
             PIDLineEdit.OnFocusExit += e => OnPIDChanged?.Invoke(e.Text);
@@ -53,14 +49,9 @@ namespace Content.Client._WL.Passports.UI
             GenderLineEdit.Text = gender;
         }
 
-        public void SetCurrentYOB(string yearOfBirth)
+        public void SetCurrentDateOfBirth(string dateOfBirth)
         {
-            YOBLineEdit.Text = yearOfBirth;
-        }
-
-        public void SetCurrentHeight(string height)
-        {
-            HeightLineEdit.Text = height;
+            DateOfBirthLineEdit.Text = dateOfBirth;
         }
 
         public void SetCurrentPID(string pid)

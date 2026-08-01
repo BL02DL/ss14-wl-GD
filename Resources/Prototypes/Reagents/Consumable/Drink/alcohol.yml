@@ -235,6 +235,11 @@
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
           inverted: true
+#WL-changes-start
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
+#WL-changes-end
         damage:
           types:
             Poison: 0.1
@@ -285,6 +290,16 @@
         - !type:MetabolizerTypeCondition
           type: [ Biorobotic ]
           inverted: true
+#WL-changes-start
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
+          inverted: true
+#WL-changes-end
+      - !type:SatiateHunger
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Golem ]
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -2250,11 +2265,10 @@
       metabolites:
         Ethanol: 0.3
       effects:
-        - !type:GenericStatusEffect
-          key: RatvarianLanguage
-          component: RatvarianLanguage
-        - !type:SatiateThirst
-          factor: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectRatvarianLanguage
+      - !type:SatiateThirst
+        factor: 2
 
 - type: reagent
   id: Silencer

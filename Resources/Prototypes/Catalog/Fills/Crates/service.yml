@@ -199,6 +199,7 @@
         - id: NewtonCradle
         - id: BoxEnvelope
         - id: BrbSign
+        - id: DeskBell
 
 - type: entity
   parent: CrateGenericSteel
@@ -314,6 +315,7 @@
         - id: DrinkVodkaBottleFull
         - id: DrinkWhiskeyBottleFull
         - id: DrinkWineBottleFull
+        - id: DrinkDarkBeerBottleFullGrowler   # Corvax-WL
 
 - type: entity
   parent: CratePlastic

@@ -25,10 +25,7 @@ public sealed partial class PassportComponent : Component
     public string DisplayGender = string.Empty;
 
     [DataField, AutoNetworkedField]
-    public string DisplayYearOfBirth = string.Empty;
-
-    [DataField, AutoNetworkedField]
-    public string DisplayHeight = string.Empty;
+    public string DisplayDateOfBirth = string.Empty;
 
     [DataField, AutoNetworkedField]
     public string DisplayPID = string.Empty;

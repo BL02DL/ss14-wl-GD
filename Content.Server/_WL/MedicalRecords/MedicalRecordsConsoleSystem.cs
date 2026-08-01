@@ -1,6 +1,8 @@
 using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
-using Content.Server.StationRecords.Systems;
+using Content.Shared.StationRecords.Components;
+using Content.Shared.StationRecords.Events;
+using Content.Shared.StationRecords.Systems;
 using Content.Shared._WL.Languages;
 using Content.Shared._WL.MedicalRecords;
 using Content.Shared._WL.MedicalRecords.Components;
@@ -26,7 +28,6 @@ public sealed partial class MedicalRecordsConsoleSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<MedicalRecordsConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
-        SubscribeLocalEvent<MedicalRecordsConsoleComponent, AfterGeneralRecordCreatedEvent>(UpdateUserInterface);
 
         Subs.BuiEvents<MedicalRecordsConsoleComponent>(MedicalRecordsConsoleKey.Key, subs =>
         {
@@ -85,7 +86,7 @@ public sealed partial class MedicalRecordsConsoleSystem : EntitySystem
 
             for (int i = 0; i < record.Languages.Count; i++)
             {
-                languages += Loc.GetString(_prototypeManager.Index<LanguagePrototype>(record.Languages[i]).Name);
+                languages += Loc.GetString(_prototypeManager.Index(record.Languages[i]).Name);
 
                 if (i != record.Languages.Count - 1)
                     languages += ", ";
@@ -133,9 +134,7 @@ public sealed partial class MedicalRecordsConsoleSystem : EntitySystem
 
                 comp.CanPrintEntries = true;
 
-                var ent = new Entity<MedicalRecordsConsoleComponent>(uid, comp);
-
-                UpdateUserInterface(ent);
+                UpdateUserInterface((uid, comp));
             }
 
             return;
@@ -154,7 +153,7 @@ public sealed partial class MedicalRecordsConsoleSystem : EntitySystem
         }
 
         var listing = _records.BuildListing((owningStation.Value, stationRecords), console.Filter);
-        var state = new MedicalRecordsConsoleState(listing, console.Filter, ent.Comp.CanPrintEntries);
+        var state = new MedicalRecordsConsoleState(listing, console.Filter, console.CanPrintEntries);
 
         if (console.ActiveKey is { } id)
         {
